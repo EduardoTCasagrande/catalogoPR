@@ -66,34 +66,48 @@
     }
     .chip.active, .chip:hover{ border-color: transparent; background:linear-gradient(135deg, rgba(255,122,255,.25), rgba(138,122,255,.25)); }
     main{max-width:1100px; margin:10px auto 60px; padding:0 16px;}
+
+    /* ===== GRID ===== */
     .grid{
       display:grid; gap:16px;
       grid-template-columns:repeat( auto-fit, minmax(230px, 1fr) );
     }
+    /* Mobile: sempre 2 por linha */
+    @media (max-width: 520px){
+      .grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:12px;
+      }
+      .content{ padding:10px }
+      .title{ font-size:14px }
+      .meta{ font-size:12px }
+      .price{ font-size:16px }
+      .btn{ padding:9px 10px; font-size:14px }
+    }
+
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
       border:1px solid var(--stroke); border-radius:var(--radius);
       overflow:hidden; box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease;
     }
     .card:hover{ transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,.45);}
-    /* para: (cabe no quadrado, centralizado, sem corte) */
-.thumb{
-  aspect-ratio: 1 / 1;           /* deixa a área QUADRADA */
-  background:#0d0e13;
-  overflow:hidden;
-  display:grid;                  /* centraliza fácil */
-  place-items:center;
-  position:relative;
-}
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:contain;            /* mostra a foto inteira */
-  object-position:center;        /* centraliza */
-  display:block;
-  transition: transform .4s ease;
-}
-
+    /* imagem quadrada, centralizada, sem corte */
+    .thumb{
+      aspect-ratio: 1 / 1;
+      background:#0d0e13;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      position:relative;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      transition: transform .4s ease;
+    }
     .card:hover .thumb img{ transform: scale(1.04); }
     .badge{
       position:absolute; top:10px; left:10px; font-size:12px; padding:6px 10px;
@@ -105,12 +119,14 @@
     .meta{ font-size:13px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap;}
     .price{ font-size:18px; font-weight:800; background:linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip:text; color:transparent;}
     .cta-row{ display:flex; gap:8px; }
+
     .btn{
       flex:1; text-align:center; padding:10px 12px; border-radius:10px; cursor:pointer; border:1px solid var(--stroke); background:#121319; color:var(--text);
     }
     .btn.primary{
       background: linear-gradient(135deg, var(--brand), var(--brand-2)); border:none; font-weight:700;
     }
+
     /* Modal */
     dialog{
       width:min(920px, 92vw); border:none; padding:0; border-radius:16px; overflow:hidden; background:#11131a; color:var(--text);
@@ -120,104 +136,87 @@
     .modal{
       display:grid; grid-template-columns: 1.2fr 1fr; min-height: 420px; position:relative;
     }
-/* 1) Esquerda do modal: volta a ser grid e permite encolher sem cortar */
-.modal .left{
-  background:#0e0f14;
-  display:grid;
-  grid-template-rows: minmax(0, 1fr) auto; /* carrossel | thumbs */
-  min-height:100%;
-}
+    .modal .left{
+      background:#0e0f14;
+      display:grid;
+      grid-template-rows: minmax(0, 1fr) auto; /* carrossel | thumbs */
+      min-height:100%;
+    }
 
     .modal .right{ padding:20px; display:grid; gap:10px }
     .pill{ display:inline-block; font-size:12px; padding:6px 10px; border:1px solid var(--stroke); border-radius:999px; color:var(--muted)}
+    .pill-group{ display:flex; flex-wrap:wrap; gap:8px; }
     .specs{ display:grid; gap:6px; font-size:14px; color:var(--muted)}
     .x{ position:absolute; right:12px; top:12px; background:transparent; border:1px solid var(--stroke); color:var(--muted); border-radius:8px; padding:6px 10px; cursor:pointer}
-/* ===== Melhorias mobile: modal full-screen e imagem grande ===== */
-@media (max-width: 860px){
-  /* Modal ocupa a tela toda */
-  dialog{
-    width: 100vw;
-    max-width: none;
-    height: 100svh;  /* usa viewport real do mobile */
-    margin: 0;
-    border-radius: 0;
-  }
 
-  /* Layout em uma coluna, reservando ~65% da tela para a imagem */
-  .modal{
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 65svh) 1fr; /* carrossel | infos */
-    min-height: 100%;
-  }
+    /* ===== Melhorias mobile: modal full-screen e imagem grande ===== */
+    @media (max-width: 860px){
+      dialog{
+        width: 100vw;
+        max-width: none;
+        height: 100svh;
+        margin: 0;
+        border-radius: 0;
+      }
+      .modal{
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 65svh) 1fr;
+        min-height: 100%;
+      }
+      .modal .left{
+        aspect-ratio: auto;
+        min-height: 0;
+      }
+      .carousel{
+        padding: 0;
+        height: 100%;
+        max-height: none;
+      }
+      .carousel img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .thumbs{
+        padding: 12px;
+      }
+      .thumbs button{
+        width: 72px;
+        height: 72px;
+      }
+      .nav{
+        padding: 10px 14px;
+      }
+    }
 
-  /* Remove a proporção fixa que encolhia a esquerda */
-  .modal .left{
-    aspect-ratio: auto;
-    min-height: 0;
-  }
-
-  /* Carrossel ocupa toda a área disponível, sem padding */
-  .carousel{
-    padding: 0;
-    height: 100%;
-    max-height: none;
-  }
-
-  /* Imagem usa 100% da área preservando proporção */
-  .carousel img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  /* Miniaturas mais confortáveis no toque */
-  .thumbs{
-    padding: 12px;
-  }
-  .thumbs button{
-    width: 72px;
-    height: 72px;
-  }
-
-  /* Botões de navegação um pouco maiores no mobile */
-  .nav{
-    padding: 10px 14px;
-  }
-}
-
-/* (Opcional) Mesmo no desktop, deixa a imagem respirar mais */
-.carousel{
-  max-height: 80vh; /* era 50vh */
-}
+    .carousel{
+      max-height: 80vh;
+    }
 
     footer{ color:var(--muted); text-align:center; padding:30px 16px 60px; font-size:13px}
-    /* estados vazios */
     .empty{ text-align:center; color:var(--muted); padding:30px 10px }
 
-/* === CARROSSEL (ajuste correto no modal) === */
-.carousel {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0a0b10;
-  overflow: clip;
-  padding: 20px;             /* dá uma folga para a imagem respirar */
-  max-height: 50vh;          /* nunca passa de 80% da altura da tela */
-  box-sizing: border-box;
-}
-
-.carousel img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;               /* impede de esticar horizontalmente */
-  height: auto;              /* mantém proporção */
-  object-fit: contain;       /* mostra tudo, sem cortar */
-  object-position: center;
-  display: block;
-}
-
+    .carousel {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0a0b10;
+      overflow: clip;
+      padding: 20px;
+      max-height: 50vh;
+      box-sizing: border-box;
+    }
+    .carousel img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
     .nav{
       position:absolute; top:50%; transform:translateY(-50%);
       background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.15);
@@ -227,14 +226,12 @@
     .nav.prev{ left:10px }
     .nav.next{ right:10px }
     .nav:disabled{ opacity:.4; cursor:not-allowed }
-
     .hotspot{
       position:absolute; top:0; bottom:0; width:5%;
       background:transparent; border:none; cursor: pointer;
     }
     .hotspot.left{ left:0 }
     .hotspot.right{ right:0 }
-
     .thumbs{
       display:flex; gap:8px; padding:10px; overflow:auto; width:100%;
       background:#0a0b10; border-top:1px solid var(--stroke);
@@ -243,7 +240,6 @@
       border:1px solid var(--stroke); background:#11131a; padding:0; border-radius:10px;
       width:62px; height:62px; overflow:hidden; cursor:pointer; flex:0 0 auto;
     }
-    /* miniaturas também sem corte (contain) para ver a foto inteira */
     .thumbs img{
       width:100%; height:100%; object-fit:contain; display:block; background:#0a0b10;
     }
@@ -270,6 +266,7 @@
       <button class="chip" data-cat="menina">Menina</button>
       <button class="chip" data-cat="menino">Menino</button>
       <button class="chip" data-cat="recem-nascido">Recém-nascido</button>
+      <button class="chip" data-cat="dormindo">Dormindo</button>
 
       <select id="ordem" aria-label="Ordenar">
         <option value="padrao">Ordenar</option>
@@ -300,7 +297,7 @@
       </div>
       <div class="right">
         <h2 id="modalTitle" style="margin:0"></h2>
-        <div class="pill" id="modalTag"></div>
+        <div class="pill-group" id="modalTags"></div>
         <div class="price" id="modalPrice"></div>
         <div class="specs" id="modalSpecs"></div>
         <p id="modalDesc"></p>
@@ -371,12 +368,21 @@
       }
     ];
 
+    // === LABELS bonitos para categorias ===
+    const LABELS = {
+      'menina':'Menina',
+      'menino':'Menino',
+      'recem-nascido':'Recém-nascido',
+      'dormindo':'Dormindo',
+      'careca':'Careca'
+    };
+    const labelDa = k => LABELS[k] || k;
+
     // === RENDERIZAÇÃO ===
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const q = document.getElementById('q');
     const ordem = document.getElementById('ordem');
-    const chips = [...document.querySelectorAll('.chip')];
     let filtroCategoria = 'todas';
 
     function formataBRL(v){ return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); }
@@ -398,7 +404,7 @@
             </div>
             <div class="price">${formataBRL(p.preco)}</div>
             <div class="cta-row">
-              <button class="btn" onclick="event.stopPropagation(); compartilhar('${p.nome}')">Compartilhar</button>
+              <!-- botão compartilhar removido -->
               <button class="btn primary" onclick="event.stopPropagation(); abrir('${p.id}')">Ver detalhes</button>
             </div>
           </div>
@@ -412,7 +418,7 @@
         const matchTexto = !texto || [
           p.nome, p.tamanho, p.peso, p.pele, p.cabelo, p.olhos
         ].some(v=> (v||'').toLowerCase().includes(texto));
-        const matchCat = filtroCategoria==='todas' || p.categoria.includes(filtroCategoria);
+        const matchCat = filtroCategoria==='todas' || (p.categoria||[]).includes(filtroCategoria);
         return matchTexto && matchCat;
       });
     }
@@ -436,7 +442,7 @@
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
     const modalTitle = document.getElementById('modalTitle');
-    const modalTag = document.getElementById('modalTag');
+    const modalTags = document.getElementById('modalTags');
     const modalPrice = document.getElementById('modalPrice');
     const modalSpecs = document.getElementById('modalSpecs');
     const modalDesc = document.getElementById('modalDesc');
@@ -482,50 +488,39 @@
     function prevImg(){ goToImg(idxAtual - 1); }
     function nextImg(){ goToImg(idxAtual + 1); }
 
+    function abrir(id){
+      const p = produtos.find(x=>x.id===id);
+      produtoAtual = p;
+      idxAtual = 0;
 
-  function abrir(id){
-    const p = produtos.find(x=>x.id===id);
-    produtoAtual = p;
-    idxAtual = 0;
+      modalTitle.textContent = p.nome;
+      modalTags.innerHTML = (p.categoria || [])
+        .map(cat => `<span class="pill">${labelDa(cat)}</span>`)
+        .join('');
+      modalPrice.textContent = formataBRL(p.preco);
+      modalSpecs.innerHTML = `
+        <div>• Tamanho: ${p.tamanho}</div>
+        <div>• Peso: ${p.peso}</div>
+        <div>• Pele: ${p.pele}</div>
+        <div>• Cabelo: ${p.cabelo}</div>
+        <div>• Olhos: ${p.olhos}</div>
+      `;
+      modalDesc.textContent = p.descricao || '';
+      const msg = encodeURIComponent(`Olá! Tenho interesse na ${p.nome}. Ainda está disponível?`);
+      whats.href = `https://wa.me/5511976762188?text=${msg}`;
 
-    modalTitle.textContent = p.nome;
-    modalTag.textContent = p.categoria.includes('recem-nascido') ? 'Recém-nascido' :
-                           p.categoria.includes('menina') ? 'Menina' : 'Menino';
-    modalPrice.textContent = formataBRL(p.preco);
-    modalSpecs.innerHTML = `
-      <div>• Tamanho: ${p.tamanho}</div>
-      <div>• Peso: ${p.peso}</div>
-      <div>• Pele: ${p.pele}</div>
-      <div>• Cabelo: ${p.cabelo}</div>
-      <div>• Olhos: ${p.olhos}</div>
-    `;
-    modalDesc.textContent = p.descricao || '';
-    const msg = encodeURIComponent(`Olá! Tenho interesse na ${p.nome}. Ainda está disponível?`);
-    whats.href = `https://wa.me/5511976762188?text=${msg}`;
+      const imgs = imagensDo(p);
+      renderThumbs(imgs);
+      updateCarousel();
 
-    const imgs = imagensDo(p);
-    renderThumbs(imgs);
-    updateCarousel();
-
-    modal.showModal();
-    document.body.style.overflow = 'hidden'; // evita scroll no fundo
-    modal.focus();
-  }
-
-  modal.addEventListener('close', ()=>{
-    document.body.style.overflow = '';
-  });
-
-
-    function compartilhar(nome){
-      const shareData = {
-        title: nome,
-        text: `Olha que fofura: ${nome}!`,
-        url: location.href
-      };
-      if (navigator.share) navigator.share(shareData);
-      else alert('Copie o link da página para compartilhar 😊');
+      modal.showModal();
+      document.body.style.overflow = 'hidden';
+      modal.focus();
     }
+
+    modal.addEventListener('close', ()=>{
+      document.body.style.overflow = '';
+    });
 
     // === EVENTOS UI ===
     q.addEventListener('input', render);
