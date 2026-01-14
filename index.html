@@ -322,7 +322,6 @@
   <footer>© <span id="year"></span> Princesa Reborn — feito à mão no Brasil.</footer>
 
   <script>
-    // === DADOS (troque aqui pelos seus produtos) ===
     const produtos = [
       {
         id:"ana",
@@ -337,46 +336,152 @@
         imagens:["maite.jpg","maite-2.jpg"],
         descricao:"Bebê com toque macio, pintura realista e cheirinho de bebê. Acompanha enxoval completo."
       },
-      {
-        id:"sofia",
-        nome:"Sofia",
-        preco: 699.99,
-        categoria:["menina", "dormindo"],
-        tamanho:"50 cm",
-        peso:"1,4 kg",
-        pele:"Tom pêssego",
-        cabelo:"Enroaldo Castanho",
-        olhos:"Fechado",
-        imagens:["sofia-1.jpg","sofia-2.jpg"],
-        descricao:"Expressão serena, ideal para presente. Feita com silicone vinyl de alta qualidade."
-      },
-      {
-        id:"Henri",
-        nome:"Henri",
-        preco: 399.99,
-        categoria:["menino","recem-nascido"],
-        tamanho:"50 cm",
-        peso:"14 kg",
-        pele:"Branco",
-        cabelo:"Liso escuro",
-        olhos:"Castanho",
-        imagens:["miguel-1.jpg","miguel-2.jpg","miguel-3.jpg"],
-        descricao:"Menininho charmoso com detalhes de recém-nascido e corpo com enchimento macio."
-      },
-      {
-        id:"test",
-        nome:"Test",
-        preco: 160.00,
-        categoria:["menino"],
-        tamanho:"56 cm",
-        peso:"3,0 kg",
-        pele:"Tom oliva",
-        cabelo:"Castanho escuro",
-        olhos:"Azuis",
-        imagens:["enzo-1.jpg","enzo-2.jpg"],
-        descricao:"Modelo premium com pintura multicamadas e magnético para chupeta."
-      }
-    ];
+  {
+    id: "alena",
+    nome: "Alena",
+    preco: 129.99,
+    categoria: ["menina", "sentada", "cabelo preto"],
+    tamanho: "44 cm",
+    peso: "0,800 kg",
+    pele: "Branquinha",
+    cabelo: "Fibra sintética preta",
+    olhos: "Abertos",
+    imagens: ["alena.jpeg"],
+    descricao: "Boneca estilo bebê, corpo em vinil, cabelo preto com laço vermelho. Ideal para presentear."
+  },
+  {
+    id: "princesa-reborn-rosa",
+    nome: "Princesa Reborn Rosa",
+    preco: 129.99,
+    categoria: ["menina", "reborn", "kit completo"],
+    tamanho: "44 cm",
+    peso: "0,800 kg",
+    pele: "Realista com detalhes suaves",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["sissi cast.jpg"],
+    descricao: "Bebê reborn realista com roupa rosa, chupeta e acessórios. Acompanha bolsa personalizada."
+  },
+  {
+    id: "princesa-reborn-kit-completo",
+    nome: "Princesa Reborn Kit Completo",
+    preco: 129.99,
+    categoria: ["menina", "reborn", "mais vendido"],
+    tamanho: "44 cm",
+    peso: "0,800 kg",
+    pele: "Siliconada realista",
+    cabelo: "Implantado fio a fio",
+    olhos: "Abertos",
+    imagens: ["hillary chanel.jpg"],
+    descricao: "Kit completo com bebê reborn, roupas extras, fraldas, mamadeira, certidão e bolsa."
+  },
+  {
+    id: "princesa-reborn-banho",
+    nome: "Princesa Reborn Banho",
+    preco: 129.99,
+    categoria: ["menina", "reborn", "pode dar banho"],
+    tamanho: "44 cm",
+    peso: "0,800 kg",
+    pele: "Vinil siliconado",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["chiquinha.jpg"],
+    descricao: "Bebê reborn que pode ir à água. Acompanha roupinhas, acessórios e bolsa Princesa Reborn."
+  },
+   {
+    id: "helena",
+    nome: "Helena",
+    preco: 699.99,
+    categoria: ["menina", "sentada", "cabelo claro"],
+    tamanho: "50 cm",
+    peso: "1,014 kg",
+    pele: "Branquinha com detalhes realistas",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["helena-cab.webp"],
+    descricao: "Bebê realista com vestido floral azul e laço combinando. Toque macio e acabamento delicado."
+  },
+  {
+    id: "melissa",
+    nome: "Melissa",
+    preco: 699.99,
+    categoria: ["menina", "sentada", "cabelo castanho"],
+    tamanho: "50 cm",
+    peso: "1,015 kg",
+    pele: "Clara com pintura suave",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["melissa.webp"],
+    descricao: "Bebê delicada com vestido vermelho e laço no cabelo. Ideal para colecionadores e presente."
+  },
+  {
+    id: "livia cab",
+    nome: "Livia cab",
+    preco: 699.99,
+    categoria: ["menina", "dormindo", "recem-nascido"],
+    tamanho: "50 cm",
+    peso: "1,015 kg",
+    pele: "Clara com veias suaves",
+    cabelo: "Implantado",
+    olhos: "Fechados",
+    imagens: ["levi.webp"],
+    descricao: "Bebê reborn dormindo com macacão em tricô. Expressão tranquila e muito realista."
+  },
+  {
+    id: "maddie",
+    nome: "Maddie",
+    preco: 699.99,
+    categoria: ["menina", "sentada", "cabelo cacheado"],
+    tamanho: "50 cm",
+    peso: "1,015 kg",
+    pele: "Clara com rubor natural",
+    cabelo: "Implantado cacheado",
+    olhos: "Abertos",
+    imagens: ["maddie-cab.webp"],
+    descricao: "Bebê charmosa com cabelinhos cacheados e look moderno. Corpo macio e detalhes realistas."
+  },
+  {
+    id: "maite",
+    nome: "Maitê",
+    preco: 699.99,
+    categoria: ["menina", "dormindo", "recem-nascido"],
+    tamanho: "50 cm",
+    peso: "1,015 kg",
+    pele: "Branquinha com veias realistas",
+    cabelo: "Implantado",
+    olhos: "Fechados",
+    imagens: ["maite-cab.webp"],
+    descricao: "Bebê dormindo com expressão serena. Ideal para quem busca realismo e delicadeza."
+  },
+  {
+    id: "olivia",
+    nome: "Olívia",
+    preco: 699.99,
+    categoria: ["menina", "sentada", "cabelo loiro"],
+    tamanho: "50 cm",
+    peso: "1,015 kg",
+    pele: "Clara com acabamento premium",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["olivia.webp"],
+    descricao: "Bebê reborn com roupa verde e boina. Visual sofisticado e acabamento artesanal."
+  },
+  {
+    id: "pietro",
+    nome: "Pietro",
+    preco: 699.99,
+    categoria: ["menino", "sentado", "cabelo castanho"],
+    tamanho: "50 cm",
+    peso: "1 kg",
+    pele: "Clara com detalhes naturais",
+    cabelo: "Implantado",
+    olhos: "Abertos",
+    imagens: ["pietro.webp"],
+    descricao: "Bebê menino com look clássico e suspensório. Expressão doce e acabamento realista."
+  }
+];
+
+
 
     // === LABELS bonitos para categorias ===
     const LABELS = {
